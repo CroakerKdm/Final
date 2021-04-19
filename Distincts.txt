@@ -1,5 +1,7 @@
-_____________Sorted 20_____________
-Nice header by Kyrylo Molchanov
+Header for final task
+@author Croaker
+@project Final
+20 distinct words by number of occurrence:
 the 3313
 to 1845
 and 1807

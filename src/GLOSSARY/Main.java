@@ -37,8 +37,11 @@ public class Main {
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .forEachOrdered(entry -> sorted.put(entry.getKey(), entry.getValue()));
 
-        StringBuilder sorted20 = new StringBuilder("_____________Sorted 20_____________\n")
-                .append("Nice header by Kyrylo Molchanov\n");
+        StringBuilder sorted20 = new StringBuilder()
+                .append("Header for final task\n" +
+                        "@author Croaker\n" +
+                        "@project Final\n" +
+                        "20 distinct words by number of occurrence:\n");
         int counter = 0;
         for (Map.Entry<String, Integer> entry : sorted.entrySet()) {
             counter++;
