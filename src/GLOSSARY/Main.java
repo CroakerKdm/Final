@@ -2,11 +2,12 @@ package GLOSSARY;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -19,12 +20,9 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileWriter fw = new FileWriter("distinctWords.txt");
-        String text = new String(Files.readAllBytes(Paths.get("harry.txt")));
-        String text1 = text.replaceAll("[^A-Za-z ']", "");
-
-        String[] words = text.split(" ");
-        List<String> list = Arrays.stream(words).collect(Collectors.toList());
+        String text1 = new String(Files.readAllBytes(Paths.get("harry.txt")));
+        String text = text1.replaceAll("[^A-Za-z ']", "");
+        String[] words = text.split(" +");
 
         Map<String, Integer> wordMap = new HashMap<>();
         Integer value = 0;
@@ -42,6 +40,17 @@ public class Main {
                 .sorted(Map.Entry.<String,Integer>comparingByValue().reversed())
                 .forEachOrdered(entry -> sorted.put(entry.getKey(),entry.getValue()));
         sorted.entrySet().stream().limit(20).forEach(System.out::println);
+
+        StringBuilder sorted20 = new StringBuilder("_____________Sorted 20_____________\n");
+        int counter = 0;
+        for (Map.Entry<String,Integer> entry : sorted.entrySet()){
+            counter++;
+            sorted20.append(entry.getKey()).append(" ").append(entry.getValue()).append("\n");
+            if (counter == 20) break;
+        }
+
+        String fileOutput = "Distincts" + ".txt";
+        Files.writeString(Paths.get(fileOutput), sorted20.toString());
     }
 }
 
