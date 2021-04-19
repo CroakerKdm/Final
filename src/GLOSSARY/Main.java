@@ -1,8 +1,6 @@
 package GLOSSARY;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -37,13 +35,13 @@ public class Main {
 
         Map<String, Integer> sorted = new LinkedHashMap<>();
         wordMap.entrySet().stream()
-                .sorted(Map.Entry.<String,Integer>comparingByValue().reversed())
-                .forEachOrdered(entry -> sorted.put(entry.getKey(),entry.getValue()));
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .forEachOrdered(entry -> sorted.put(entry.getKey(), entry.getValue()));
         sorted.entrySet().stream().limit(20).forEach(System.out::println);
 
         StringBuilder sorted20 = new StringBuilder("_____________Sorted 20_____________\n");
         int counter = 0;
-        for (Map.Entry<String,Integer> entry : sorted.entrySet()){
+        for (Map.Entry<String, Integer> entry : sorted.entrySet()) {
             counter++;
             sorted20.append(entry.getKey()).append(" ").append(entry.getValue()).append("\n");
             if (counter == 20) break;
